@@ -1,0 +1,21 @@
+#跟路径
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+#数据库配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.96.95.237:3306/online_class?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: 123
+
+
+
+
+#mybatis映射文件
+mybatis:
+  type-aliases-package: com.SelectCourse.pojo
+  mapper-locations: classpath:mappers/*.xml
