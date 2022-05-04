@@ -22,17 +22,19 @@ public class UserDaoServiceImpl implements UserDaoService {
     @Autowired
     private UserDao userDao;
 
-    public UserDao getUserDao() {
-        return userDao;
+
+    @Override
+    public User queryUserByUserNumber(String userNumber) {
+        return userDao.queryUserByUserNumber(userNumber);
     }
 
     @Override
-    public User userLogin(String userNumber) {
-        return userDao.userLogin(userNumber);
+    public int addUser(User user) {
+        return userDao.addUser(user);
     }
 
     @Override
-    public int userRegister(User user) {
-        return userDao.userRegister(user);
+    public int deleteUser(String userNumber) {
+        return userDao.deleteUser(userNumber);
     }
 }

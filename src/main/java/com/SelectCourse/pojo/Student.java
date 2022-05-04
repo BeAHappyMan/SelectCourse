@@ -11,6 +11,5 @@ public class Student {
     private int studentID;// 学生id
     private String studentName;// 学生姓名
     private String studentNumber;// 学号
-    private String studentAge;// 学生年龄
     private String studentClass;//学生班级
 }

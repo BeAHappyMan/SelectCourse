@@ -16,4 +16,5 @@ public class Course {
     private int courseMaxStudentNumber;// 选课最大人数
     private int courseStudentNumber;// 已选人数
     private int courseTeacherNumber;// 课程老师工号
+    private ClassTime classTime;
 }

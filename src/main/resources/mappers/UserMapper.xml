@@ -4,13 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.SelectCourse.dao.UserDao">
+<!--    删除用户-->
+    <delete id="deleteUser">
+        delete from SelectCourse.user where user_number=#{userNumber}
+    </delete>
 
     <!--    用户登录-->
-    <select id="userLogin" resultType="com.SelectCourse.pojo.User">
+    <select id="queryUserByUserNumber" resultType="com.SelectCourse.pojo.User">
         select *from SelectCourse.user where user_number=#{userNumber}
     </select>
     <!--    用户注册-->
-    <insert id="userRegister">
+    <insert id="addUser">
         INSERT INTO SelectCourse.user(user_name, user_password,user_number,user_type)
         value (#{userName},#{userPassword},#{userNumber},#{userType})
     </insert>

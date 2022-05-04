@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
     //用户登录
-    User userLogin(String userNumber);
+    User queryUserByUserNumber(String userNumber);
 
     //用户注册
-    int userRegister(User user);
+    int addUser(User user);
+
+    int deleteUser(String userNumber);
 }
