@@ -12,14 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class SelectCourseApplication {
 
     public static void main(String[] args) {
-
-        UserDaoServiceImpl userDaoService = new UserDaoServiceImpl();
-
-        System.out.println(userDaoService.getUserDao());
-        System.out.println(userDaoService);
-        User user = userDaoService.userLogin("123");
-        System.out.println(user);
-
         SpringApplication.run(SelectCourseApplication.class, args);
     }
 

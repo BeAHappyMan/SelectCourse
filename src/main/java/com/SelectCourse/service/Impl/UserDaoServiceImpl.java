@@ -27,11 +27,8 @@ public class UserDaoServiceImpl implements UserDaoService {
     }
 
     @Override
-    public User userLogin(String userName) {
-
-        System.out.println("dao"+userName);
-        System.out.println(userDao.userLogin(userName));
-        return userDao.userLogin(userName);
+    public User userLogin(String userNumber) {
+        return userDao.userLogin(userNumber);
     }
 
     @Override

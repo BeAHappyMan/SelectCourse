@@ -21,8 +21,7 @@ public class UserController {
     private UserDaoService userDaoService;
 
     @RequestMapping("/login")
-    public Result userLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session){
-
+    public Result userLogin(HttpServletRequest request){
         // 获取登录信息
         String userName = request.getParameter("userName");
         String userPassword = request.getParameter("userPassword");
@@ -30,7 +29,7 @@ public class UserController {
         User user = userDaoService.userLogin(userName);
         if(user==null)
             return Result.error(Constants.CODE_400,"用户不存在");
-        if(user.getUserPassword()!=userPassword)
+        if(!user.getUserPassword().equals(userPassword))
             return Result.error(Constants.CODE_400,"密码错误");
         else
             return Result.success(userType);

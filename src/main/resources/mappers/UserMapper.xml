@@ -7,11 +7,12 @@
 
     <!--    用户登录-->
     <select id="userLogin" resultType="com.SelectCourse.pojo.User">
-        select *from selectcourse.user where user_number=#{userName}
+        select *from SelectCourse.user where user_number=#{userNumber}
     </select>
     <!--    用户注册-->
     <insert id="userRegister">
-        INSERT INTO selectcourse.user(user_name, user_password) value (#{userName},#{userPassword})
+        INSERT INTO SelectCourse.user(user_name, user_password,user_number,user_type)
+        value (#{userName},#{userPassword},#{userNumber},#{userType})
     </insert>
 
 

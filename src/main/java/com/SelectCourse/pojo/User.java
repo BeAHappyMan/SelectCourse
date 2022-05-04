@@ -13,5 +13,4 @@ public class User {
     private String userNumber;
     private String userPassword;// 登录密码
     private String userType;// 登录用户类型  教师 学生 教务处
-
 }
