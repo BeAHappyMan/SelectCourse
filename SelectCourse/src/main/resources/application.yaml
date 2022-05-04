@@ -1,17 +1,17 @@
-#跟路径
-server:
-  port: 8080
-  servlet:
-    context-path: /
 
-#数据库配置
+server:
+  port: 8081
+
+
+
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.96.95.237:3306/online_class?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/mybatis?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
     username: root
     password: 123
-
+    type: com.alibaba.druid.pool.DruidDataSource
 
 
 
@@ -19,3 +19,9 @@ spring:
 mybatis:
   type-aliases-package: com.SelectCourse.pojo
   mapper-locations: classpath:mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+debug: true
+logging.level.org.springframework.boot.autoconfigure: error
