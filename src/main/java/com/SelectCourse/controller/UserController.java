@@ -12,13 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
 
     @Autowired
@@ -28,12 +29,13 @@ public class UserController {
     @Autowired
     private TeacherDaoService teacherDaoService;
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", produces="application/json")
     public Result userLogin(HttpServletRequest request){
         // 获取登录信息
         String userNumber = request.getParameter("userNumber");
         String userPassword = request.getParameter("userPassword");
         String userType = request.getParameter("userType");
+        System.out.println(userNumber+userPassword+userType);
         User user = userDaoService.queryUserByUserNumber(userNumber);
         if(user==null)
             return Result.error(Constants.CODE_400,"用户不存在");

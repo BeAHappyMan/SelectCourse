@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClassTime {
-    private int timeID;// 时间id
+    private int ClassTimeID;// 时间id
     private String courseNumber;// 课程号
     private String courseLocation;
-    private int classWeekend;// 星期
-    private int classStartTime;//
-    private int classEndTime;
+    private String classWeekend;// 星期
+    private String classStartTime;//
+    private String classEndTime;
     private int classNumber; //课程节数
 }

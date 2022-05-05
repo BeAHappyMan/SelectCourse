@@ -9,5 +9,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CourseDao {
+    List<Course> queryAllCourses();
 
+    int addCourse(Course course);
 }
