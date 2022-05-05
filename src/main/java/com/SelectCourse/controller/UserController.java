@@ -31,7 +31,6 @@ public class UserController {
         String userNumber = request.getParameter("userNumber");
         String userPassword = request.getParameter("userPassword");
         String userType = request.getParameter("userType");
-        System.out.println(userNumber+userPassword+userType);
         User user = userDaoService.queryUserByUserNumber(userNumber);
         if(user==null)
             return Result.error("用户不存在");

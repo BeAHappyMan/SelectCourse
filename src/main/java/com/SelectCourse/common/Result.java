@@ -29,9 +29,6 @@ public class Result {
     }
 
 
-    public static Result error(){
-        return new Result("1","",null);
-    }
     public static Result error(String message){
         return new Result("1",message,null);
     }
