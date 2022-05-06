@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Course {
-    private int courseID;// 课程id
+    private String courseId;// 课程号
     private String courseName;// 课程名
-    private String courseNumber;// 课程号
     private String courseInformation;// 课程信息
     private int courseMaxStudentNumber;// 选课最大人数
     private int courseStudentNumber;// 已选人数
-    private String courseTeacherNumber;// 课程老师工号
+    private String courseTeacherId;// 课程老师工号
     private int coursePass;
+    private int courseCredit;
     private ClassTime classTime;
 }

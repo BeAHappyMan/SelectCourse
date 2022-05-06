@@ -24,8 +24,8 @@ public class UserDaoServiceImpl implements UserDaoService {
 
 
     @Override
-    public User queryUserByUserNumber(String userNumber) {
-        return userDao.queryUserByUserNumber(userNumber);
+    public User queryUserByUserId(String userId) {
+        return userDao.queryUserByUserId(userId);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class UserDaoServiceImpl implements UserDaoService {
     }
 
     @Override
-    public int deleteUser(String userNumber) {
-        return userDao.deleteUser(userNumber);
+    public int deleteUser(String userId) {
+        return userDao.deleteUser(userId);
     }
 }

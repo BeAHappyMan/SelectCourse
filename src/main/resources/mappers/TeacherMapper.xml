@@ -7,7 +7,7 @@
 
 
     <insert id="addTeacher">
-        INSERT INTO SelectCourse.teacher(teacher_name, teacher_number)
-        value (#{teacherName}, #{teacher_number})
+        INSERT INTO SelectCourse.teacher(teacher_name, teacher_id)
+        value (#{teacherName}, #{teacherId})
     </insert>
 </mapper>

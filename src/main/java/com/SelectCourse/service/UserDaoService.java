@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface UserDaoService {
     //用户登录
-    User queryUserByUserNumber(String userName);
+    User queryUserByUserId(String userId);
     //用户注册
     int addUser(User user);
 
-    int deleteUser(String userNumber);
+    int deleteUser(String userId);
 }

@@ -18,7 +18,7 @@ public class UserTest {
 
     @Test
     public void queryUserTest(){
-        User user = userDaoService.queryUserByUserNumber("123");
+        User user = userDaoService.queryUserByUserId("123");
         System.out.println(user);
     }
     @Test
@@ -26,7 +26,7 @@ public class UserTest {
         User user= new User();
         user.setUserType("学生");
         user.setUserPassword("123");
-        user.setUserNumber("71120143");
+        user.setUserId("71120143");
         user.setUserName("王驰");
         int i = userDaoService.addUser(user);
         if(i>0)
