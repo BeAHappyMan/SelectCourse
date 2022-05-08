@@ -8,29 +8,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Result {
-    private String errorCode;
+    private int errorCode;
     private String message;
     private Object data;
 
     public static Result success(){
-        return new Result("0","",null);
+        return new Result(0,"",null);
     }
 
     public static Result success(Object data){
-        return new Result("0","",data);
+        return new Result(0,"",data);
     }
 
 
     public static Result success(String message){
-        return new Result("0",message,null);
+        return new Result(0,message,null);
     }
     public static Result success(String message,Object data){
-        return new Result("0",message,data);
+        return new Result(0,message,data);
     }
 
 
     public static Result error(String message){
-        return new Result("1",message,null);
+        return new Result(1,message,null);
     }
 
 }

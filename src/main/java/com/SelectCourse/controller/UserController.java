@@ -32,15 +32,17 @@ public class UserController {
         System.out.println(user2);
         // 获取登录信息
 //        String userId = jsonObject.getString("userId");
+        String userId = user2.getUserId();
 //        String userPassword = jsonObject.getString("userPassword");
+        String userPassword = user2.getUserPassword();
 //        String userType = map.get("userType");
 //        System.out.println(userId+userPassword);
-//        User user = userDaoService.queryUserByUserId(userId);
-//        if(user==null)
-//            return Result.error("用户不存在");
-//        if(!user.getUserPassword().equals(userPassword))
-//            return Result.error("密码错误");
-//        else
+        User user = userDaoService.queryUserByUserId(userId);
+        if(user==null)
+            return Result.error("用户不存在");
+        if(!user.getUserPassword().equals(userPassword))
+            return Result.error("密码错误");
+        else
           return Result.success("登录成功",user2);
     }
 
