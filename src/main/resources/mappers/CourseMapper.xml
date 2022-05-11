@@ -14,6 +14,13 @@
                    #{courseTeacherId})
 
     </insert>
+    <update id="increaseCourseStudentNumber">
+        update SelectCourse.course set course_student_number=course_student_number+1 where course_id=#{courseId}
+    </update>
+
+    <update id="decreaseCourseStudentNumber">
+        update SelectCourse.course set course_student_number=course_student_number-1 where course_id=#{courseId}
+    </update>
 
 
     <select id="queryAllCourses" resultMap="CourseClassTime">
@@ -34,6 +41,19 @@
           and c1.course_pass = 1
 
     </select>
+
+    <select id="getTeacherIdByCourseId" resultType="java.lang.String">
+        select c.course_teacher_id from SelectCourse.course c where c.course_id=#{courseId}
+    </select>
+
+    <select id="getCourseMaxStudentNumber" resultType="java.lang.Integer">
+        select c.course_max_student_number from SelectCourse.course c where c.course_id=#{courseId}
+    </select>
+
+    <select id="getCourseStudentNumber" resultType="java.lang.Integer">
+        select c.course_student_number from SelectCourse.course c where c.course_id=#{courseId}
+    </select>
+
 
     <resultMap id="CourseClassTime" type="course">
         <result property="courseName" column="course_name"/>

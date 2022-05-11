@@ -22,4 +22,30 @@ public class CourseDaoServiceImpl implements CourseDaoService {
     public int addCourse(Course course) {
         return courseDao.addCourse(course);
     }
+
+    @Override
+    public String getTeacherIdByCourseId(String courseId) {
+        return courseDao.getTeacherIdByCourseId(courseId);
+    }
+
+    @Override
+    public int increaseCourseStudentNumber(String courseId) {
+        return courseDao.increaseCourseStudentNumber(courseId);
+    }
+
+    @Override
+    public int decreaseCourseStudentNumber(String courseId) {
+        return courseDao.decreaseCourseStudentNumber(courseId);
+    }
+
+
+    @Override
+    public int getCourseMaxStudentNumber(String courseId) {
+        return courseDao.getCourseMaxStudentNumber(courseId);
+    }
+
+    @Override
+    public int getCourseStudentNumber(String courseId) {
+        return courseDao.getCourseStudentNumber(courseId);
+    }
 }
