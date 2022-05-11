@@ -6,6 +6,8 @@ import com.SelectCourse.service.SelectRecordDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SelectRecordDaoServiceImpl implements SelectRecordDaoService {
 
@@ -20,5 +22,15 @@ public class SelectRecordDaoServiceImpl implements SelectRecordDaoService {
     @Override
     public int deleteSelectRecord(SelectRecord selectRecord) {
         return selectRecordDao.deleteSelectRecord(selectRecord);
+    }
+
+    @Override
+    public SelectRecord querySelectRecord(SelectRecord selectRecord) {
+        return selectRecordDao.querySelectRecord(selectRecord);
+    }
+
+    @Override
+    public List<String> querySelectRecordByStudentId(String studentId){
+        return  selectRecordDao.querySelectRecordByStudentId(studentId);
     }
 }

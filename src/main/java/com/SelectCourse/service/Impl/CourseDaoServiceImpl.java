@@ -48,4 +48,9 @@ public class CourseDaoServiceImpl implements CourseDaoService {
     public int getCourseStudentNumber(String courseId) {
         return courseDao.getCourseStudentNumber(courseId);
     }
+
+    @Override
+    public Course queryCourseByCourseId(String courseId) {
+        return courseDao.queryCourseByCourseId(courseId);
+    }
 }

@@ -13,4 +13,10 @@
     <delete id="deleteSelectRecord">
         delete from SelectCourse.record where student_id=#{studentId} and course_id=#{courseId}
     </delete>
+    <select id="querySelectRecord" resultType="com.SelectCourse.pojo.SelectRecord">
+        select *from SelectCourse.record where student_id=#{studentId} and course_id=#{courseId}
+    </select>
+    <select id="querySelectRecordByStudentId" resultType="java.lang.String">
+        select r.course_id from SelectCourse.record r where student_id=#{studentId}
+    </select>
 </mapper>

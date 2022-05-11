@@ -19,4 +19,6 @@ public interface CourseDaoService {
     int getCourseMaxStudentNumber(String courseId);
 
     int getCourseStudentNumber(String courseId);
+
+    Course queryCourseByCourseId(String courseId);
 }

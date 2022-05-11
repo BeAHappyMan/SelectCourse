@@ -25,21 +25,22 @@
 
     <select id="queryAllCourses" resultMap="CourseClassTime">
         select c1.course_id,
-               c1.course_information,
                c1.course_max_student_number,
                c1.course_name,
                c1.course_student_number,
+               c1.course_credit,
                c1.course_teacher_id,
+               t.teacher_name,
                c2.class_end_time,
                c2.class_start_time,
                c2.class_number,
                c2.class_week,
                c2.course_location
         from SelectCourse.course c1,
-             SelectCourse.classtime c2
+             SelectCourse.classtime c2,
+             SelectCourse.teacher t
         where c1.course_id = c2.course_id
-          and c1.course_pass = 1
-
+          and c1.course_pass = 1 and c1.course_teacher_id=t.teacher_id
     </select>
 
     <select id="getTeacherIdByCourseId" resultType="java.lang.String">
@@ -53,23 +54,45 @@
     <select id="getCourseStudentNumber" resultType="java.lang.Integer">
         select c.course_student_number from SelectCourse.course c where c.course_id=#{courseId}
     </select>
+    <select id="queryCourseByCourseId" resultMap="CourseClassTime">
+        select c1.course_id,
+               c1.course_max_student_number,
+               c1.course_name,
+               c1.course_student_number,
+               c1.course_credit,
+               c1.course_teacher_id,
+               t.teacher_name,
+               c2.class_end_time,
+               c2.class_start_time,
+               c2.class_number,
+               c2.class_week,
+               c2.course_location
+        from SelectCourse.course c1,
+             SelectCourse.classtime c2,
+             SelectCourse.teacher t
+        where c1.course_id=#{courseId} and c1.course_id = c2.course_id
+          and c1.course_pass = 1 and c1.course_teacher_id=t.teacher_id
+
+    </select>
 
 
     <resultMap id="CourseClassTime" type="course">
         <result property="courseName" column="course_name"/>
         <result property="courseId" column="course_id"/>
-        <result property="courseInformation" column="course_information"/>
         <result property="courseMaxStudentNumber" column="course_max_student_number"/>
         <result property="courseStudentNumber" column="course_student_number"/>
         <result property="courseTeacherId" column="course_teacher_id"/>
-        <association property="classTime" javaType="classTime">
+        <result property="teacherName" column="teacher_name"/>
+        <result property="coursePass" column="course_pass"/>
+        <result property="courseCredit" column="course_credit"/>
+        <collection property="classTime" javaType="list" ofType="classTime">
             <result property="courseLocation" column="course_location"/>
-            <result property="classWeek" column="class_weekend"/>
+            <result property="classWeek" column="class_week"/>
             <result property="classStartTime" column="class_start_time"/>
             <result property="classEndTime" column="class_end_time"/>
             <result property="classNumber" column="class_number"/>
             <result property="courseId" column="course_id"/>
-        </association>
+        </collection>
     </resultMap>
 
 

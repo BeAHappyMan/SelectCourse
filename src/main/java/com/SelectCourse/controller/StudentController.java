@@ -2,12 +2,15 @@ package com.SelectCourse.controller;
 
 
 import com.SelectCourse.common.Result;
+import com.SelectCourse.pojo.Course;
 import com.SelectCourse.pojo.SelectRecord;
 import com.SelectCourse.service.CourseDaoService;
 import com.SelectCourse.service.SelectRecordDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -67,5 +70,35 @@ public class StudentController {
         }
         else
             return Result.error("退课失败");
+    }
+
+    @ResponseBody
+    @PostMapping("/student/showCourses")
+    public Result showCourses(@RequestBody Map<String,String> map){
+        String studentId = map.get("studentId");
+        List<Course> courses = courseDaoService.queryAllCourses();
+        SelectRecord selectRecord = new SelectRecord();
+        selectRecord.setStudentId(studentId);
+        for (Course course : courses) {
+            selectRecord.setCourseId(course.getCourseId());
+            if(selectRecordDaoService.querySelectRecord(selectRecord)!=null)
+                course.setIsSelected(true);
+            else
+                course.setIsSelected(false);
+        }
+        return Result.success("成功",courses);
+    }
+
+    @ResponseBody
+    @PostMapping("/student/showClassSchedule")
+    public Result showClassSchedule(@RequestBody Map<String,String> map) {
+        String studentId = map.get("studentId");
+        List<String> courseIds = selectRecordDaoService.querySelectRecordByStudentId(studentId);
+        List<Course> courses  = new ArrayList<>();
+        for (String courseId : courseIds) {
+            courses.add(courseDaoService.queryCourseByCourseId(courseId));
+        }
+        return Result.success("成功",courses);
+
     }
 }
