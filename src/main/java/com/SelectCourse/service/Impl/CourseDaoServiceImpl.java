@@ -14,8 +14,8 @@ public class CourseDaoServiceImpl implements CourseDaoService {
     @Autowired
     CourseDao courseDao;
     @Override
-    public List<Course> queryAllCourses() {
-        return courseDao.queryAllCourses();
+    public List<Course> queryAllCourses(int startIndex,int pageSize){
+        return courseDao.queryAllCourses(startIndex, pageSize);
     }
 
     @Override

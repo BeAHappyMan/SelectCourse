@@ -74,9 +74,12 @@ public class StudentController {
 
     @ResponseBody
     @PostMapping("/student/showCourses")
-    public Result showCourses(@RequestBody Map<String,String> map){
-        String studentId = map.get("studentId");
-        List<Course> courses = courseDaoService.queryAllCourses();
+    public Result showCourses(@RequestBody Map<String,Object> map){
+        String studentId = (String) map.get("studentId");
+        int pageSize = (int) map.get("pageSize");
+        int pageNo = (int) map.get("pageNo");
+        List<Course> courses = courseDaoService.queryAllCourses((pageNo-1)*pageSize,pageSize);
+
         SelectRecord selectRecord = new SelectRecord();
         selectRecord.setStudentId(studentId);
         for (Course course : courses) {

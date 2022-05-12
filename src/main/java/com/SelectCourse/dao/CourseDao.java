@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CourseDao {
-    List<Course> queryAllCourses();
+    List<Course> queryAllCourses(int startIndex,int pageSize);
 
     Course queryCourseByCourseId(String courseId);
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CourseDaoService {
 
-    List<Course> queryAllCourses();
+    List<Course> queryAllCourses(int startIndex,int pageSize);
 
     int addCourse(Course course);
 

@@ -41,6 +41,7 @@
              SelectCourse.teacher t
         where c1.course_id = c2.course_id
           and c1.course_pass = 1 and c1.course_teacher_id=t.teacher_id
+        limit #{startIndex},#{pageSize}
     </select>
 
     <select id="getTeacherIdByCourseId" resultType="java.lang.String">
