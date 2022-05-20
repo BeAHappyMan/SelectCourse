@@ -7,19 +7,28 @@
     <insert id="addCourse">
         insert into SelectCourse.course
         (course_name, course_id, course_information,
-         course_pass, course_max_student_number,course_credit,
+         course_pass, course_max_student_number, course_credit,
          course_teacher_id)
             value (#{courseName}, #{courseId}, #{courseInformation},
-                   #{coursePass}, #{courseMaxStudentNumber},#{courseCredit},
+                   #{coursePass}, #{courseMaxStudentNumber}, #{courseCredit},
                    #{courseTeacherId})
 
     </insert>
     <update id="increaseCourseStudentNumber">
-        update SelectCourse.course set course_student_number=course_student_number+1 where course_id=#{courseId}
+        update SelectCourse.course
+        set course_student_number=course_student_number + 1
+        where course_id = #{courseId}
     </update>
 
     <update id="decreaseCourseStudentNumber">
-        update SelectCourse.course set course_student_number=course_student_number-1 where course_id=#{courseId}
+        update SelectCourse.course
+        set course_student_number=course_student_number - 1
+        where course_id = #{courseId}
+    </update>
+    <update id="updateCoursePassInt">
+        update SelectCourse.course
+        set course_pass = #{isPass}
+        where course_id = #{courseId}
     </update>
 
 
@@ -40,20 +49,27 @@
              SelectCourse.classtime c2,
              SelectCourse.teacher t
         where c1.course_id = c2.course_id
-          and c1.course_pass = 1 and c1.course_teacher_id=t.teacher_id
+          and c1.course_pass = 1
+          and c1.course_teacher_id = t.teacher_id
         limit #{startIndex},#{pageSize}
     </select>
 
     <select id="getTeacherIdByCourseId" resultType="java.lang.String">
-        select c.course_teacher_id from SelectCourse.course c where c.course_id=#{courseId}
+        select c.course_teacher_id
+        from SelectCourse.course c
+        where c.course_id = #{courseId}
     </select>
 
     <select id="getCourseMaxStudentNumber" resultType="java.lang.Integer">
-        select c.course_max_student_number from SelectCourse.course c where c.course_id=#{courseId}
+        select c.course_max_student_number
+        from SelectCourse.course c
+        where c.course_id = #{courseId}
     </select>
 
     <select id="getCourseStudentNumber" resultType="java.lang.Integer">
-        select c.course_student_number from SelectCourse.course c where c.course_id=#{courseId}
+        select c.course_student_number
+        from SelectCourse.course c
+        where c.course_id = #{courseId}
     </select>
     <select id="queryCourseByCourseId" resultMap="CourseClassTime">
         select c1.course_id,
@@ -71,9 +87,55 @@
         from SelectCourse.course c1,
              SelectCourse.classtime c2,
              SelectCourse.teacher t
-        where c1.course_id=#{courseId} and c1.course_id = c2.course_id
-          and c1.course_pass = 1 and c1.course_teacher_id=t.teacher_id
+        where c1.course_id = #{courseId}
+          and c1.course_id = c2.course_id
+          and c1.course_pass = 1
+          and c1.course_teacher_id = t.teacher_id
 
+    </select>
+    <select id="queryByCourseLocation" resultMap="CourseClassTime">
+        select c1.course_id,
+               c1.course_max_student_number,
+               c1.course_name,
+               c1.course_student_number,
+               c1.course_credit,
+               c1.course_teacher_id,
+               t.teacher_name,
+               c2.class_end_time,
+               c2.class_start_time,
+               c2.class_number,
+               c2.class_week,
+               c2.course_location
+        from SelectCourse.course c1,
+             SelectCourse.classtime c2,
+             SelectCourse.teacher t
+        where c2.course_location = #{courseLocation}
+          and c1.course_id = c2.course_id
+          and c1.course_pass = 1
+          and c1.course_teacher_id = t.teacher_id
+    </select>
+
+    <select id="queryAllByCourseTeacherIdCourses" resultMap="CourseClassTime">
+        select c1.course_id,
+               c1.course_max_student_number,
+               c1.course_name,
+               c1.course_student_number,
+               c1.course_credit,
+               c1.course_teacher_id,
+               t.teacher_name,
+               c2.class_end_time,
+               c2.class_start_time,
+               c2.class_number,
+               c2.class_week,
+               c2.course_location,
+               c1.course_pass
+        from SelectCourse.course c1,
+             SelectCourse.classtime c2,
+             SelectCourse.teacher t
+        where c1.course_teacher_id = #{teacherId}
+          and c1.course_id = c2.course_id
+          and c1.course_teacher_id = t.teacher_id
+        limit #{startIndex},#{pageSize}
     </select>
 
 

@@ -53,4 +53,19 @@ public class CourseDaoServiceImpl implements CourseDaoService {
     public Course queryCourseByCourseId(String courseId) {
         return courseDao.queryCourseByCourseId(courseId);
     }
+
+    @Override
+    public int updateCoursePassInt(String courseId, int isPass) {
+        return courseDao.updateCoursePassInt(courseId,isPass);
+    }
+
+    @Override
+    public List<Course> queryByCourseLocation(String courseLocation) {
+        return courseDao.queryByCourseLocation(courseLocation);
+    }
+
+    @Override
+    public List<Course> queryAllByCourseTeacherIdCourses(String teacherId, int startIndex, int pageSize) {
+        return courseDao.queryAllByCourseTeacherIdCourses(teacherId,startIndex,pageSize);
+    }
 }

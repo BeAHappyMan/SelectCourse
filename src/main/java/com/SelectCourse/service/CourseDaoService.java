@@ -21,4 +21,10 @@ public interface CourseDaoService {
     int getCourseStudentNumber(String courseId);
 
     Course queryCourseByCourseId(String courseId);
+
+    int updateCoursePassInt(String courseId, int isPass);
+
+    List<Course> queryByCourseLocation(String courseLocation);
+
+    List<Course> queryAllByCourseTeacherIdCourses(String teacherId, int startIndex, int pageSize);
 }

@@ -12,6 +12,8 @@ import java.util.List;
 public interface CourseDao {
     List<Course> queryAllCourses(int startIndex,int pageSize);
 
+    List<Course> queryByCourseLocation(String courseLocation);
+
     Course queryCourseByCourseId(String courseId);
 
     int addCourse(Course course);
@@ -25,4 +27,8 @@ public interface CourseDao {
     int getCourseMaxStudentNumber(String courseId);
 
     int getCourseStudentNumber(String courseId);
+
+    int updateCoursePassInt(String courseId, int isPass);
+
+    List<Course> queryAllByCourseTeacherIdCourses(String teacherId, int startIndex, int pageSize);
 }
