@@ -44,6 +44,11 @@ public class StudentController {
         SelectRecord selectRecord = new SelectRecord();
         selectRecord.setStudentId(studentId);
         selectRecord.setCourseId(courseId);
+
+        SelectRecord selectRecord1 = selectRecordDaoService.querySelectRecord(selectRecord);
+
+        if(selectRecord1!=null)
+            return Result.error("课程已选择");
         int i = selectRecordDaoService.addSelectRecord(selectRecord);
         if(i>0) {
             courseDaoService.increaseCourseStudentNumber(courseId);
