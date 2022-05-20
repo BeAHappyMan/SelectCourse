@@ -18,7 +18,13 @@ public class AdminController {
 
     @Autowired
     CourseDaoService courseDaoService;
-
+    @PostMapping("/admin/deleteCourse")
+    public Result deleteCourse(@RequestBody Map<String,String> map){
+        String courseId = (String) map.get("courseId");
+        courseDaoService.deleteByCourseId(courseId);
+        courseDaoService.deleteClassTimeByCourseId(courseId);
+        return Result.success("删除成功");
+    }
     @PostMapping("/admin/checkCourse")
     public Result checkCourse(@RequestBody Map<String,Object> map){
         String courseId = (String) map.get("courseId");

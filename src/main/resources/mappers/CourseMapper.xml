@@ -35,6 +35,12 @@
         set course_pass = #{isPass}
         where course_id = #{courseId}
     </update>
+    <delete id="deleteByCourseId">
+        delete from SelectCourse.course where course_id=#{courseId}
+    </delete>
+    <delete id="deleteClassTimeByCourseId">
+        delete from SelectCourse.classtime where course_id=#{courseId}
+    </delete>
 
 
     <select id="queryAllCourses" resultMap="CourseClassTime">

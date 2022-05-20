@@ -6,6 +6,9 @@ import com.SelectCourse.pojo.Course;
 import java.util.List;
 
 public interface CourseDaoService {
+    int deleteByCourseId(String courseId);
+
+    int deleteClassTimeByCourseId(String courseId);
 
     List<String> getCourseId();
 

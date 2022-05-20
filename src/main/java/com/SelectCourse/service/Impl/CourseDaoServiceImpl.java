@@ -16,6 +16,16 @@ public class CourseDaoServiceImpl implements CourseDaoService {
     CourseDao courseDao;
 
     @Override
+    public int deleteByCourseId(String courseId) {
+        return courseDao.deleteByCourseId(courseId);
+    }
+
+    @Override
+    public int deleteClassTimeByCourseId(String courseId) {
+        return courseDao.deleteClassTimeByCourseId(courseId);
+    }
+
+    @Override
     public List<String> getCourseId() {
         return courseDao.getCourseId();
     }

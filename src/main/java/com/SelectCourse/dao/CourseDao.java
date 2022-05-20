@@ -11,6 +11,10 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CourseDao {
+    int deleteByCourseId(String courseId);
+
+    int deleteClassTimeByCourseId(String courseId);
+
     List<String> getCourseId();
 
     List<Course> queryAllCourses(int startIndex,int pageSize);
