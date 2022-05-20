@@ -1,6 +1,7 @@
 package com.SelectCourse.service.Impl;
 
 import com.SelectCourse.dao.CourseDao;
+import com.SelectCourse.pojo.ClassTime;
 import com.SelectCourse.pojo.Course;
 import com.SelectCourse.service.CourseDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,12 @@ public class CourseDaoServiceImpl implements CourseDaoService {
 
     @Autowired
     CourseDao courseDao;
+
+    @Override
+    public List<String> getCourseId() {
+        return courseDao.getCourseId();
+    }
+
     @Override
     public List<Course> queryAllCourses(int startIndex,int pageSize){
         return courseDao.queryAllCourses(startIndex, pageSize);
@@ -67,5 +74,10 @@ public class CourseDaoServiceImpl implements CourseDaoService {
     @Override
     public List<Course> queryAllByCourseTeacherIdCourses(String teacherId, int startIndex, int pageSize) {
         return courseDao.queryAllByCourseTeacherIdCourses(teacherId,startIndex,pageSize);
+    }
+
+    @Override
+    public int addClassTime(ClassTime classTime) {
+        return courseDao.addClassTime(classTime);
     }
 }

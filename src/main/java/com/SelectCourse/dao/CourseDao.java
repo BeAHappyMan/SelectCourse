@@ -1,5 +1,6 @@
 package com.SelectCourse.dao;
 
+import com.SelectCourse.pojo.ClassTime;
 import com.SelectCourse.pojo.Course;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -10,6 +11,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CourseDao {
+    List<String> getCourseId();
+
     List<Course> queryAllCourses(int startIndex,int pageSize);
 
     List<Course> queryByCourseLocation(String courseLocation);
@@ -17,6 +20,8 @@ public interface CourseDao {
     Course queryCourseByCourseId(String courseId);
 
     int addCourse(Course course);
+
+    int addClassTime(ClassTime classTime);
 
     String getTeacherIdByCourseId(String courseId);
 

@@ -6,13 +6,18 @@
 <mapper namespace="com.SelectCourse.dao.CourseDao">
     <insert id="addCourse">
         insert into SelectCourse.course
-        (course_name, course_id, course_information,
+        (course_name, course_id,
          course_pass, course_max_student_number, course_credit,
          course_teacher_id)
-            value (#{courseName}, #{courseId}, #{courseInformation},
+            value (#{courseName}, #{courseId},
                    #{coursePass}, #{courseMaxStudentNumber}, #{courseCredit},
                    #{courseTeacherId})
 
+    </insert>
+    <insert id="addClassTime">
+        insert into SelectCourse.classtime(course_id, course_location, class_week, class_start_time,
+                                           class_end_time, class_number)
+            value (#{courseId}, #{courseLocation}, #{classWeek}, #{classStartTime}, #{classEndTime}, #{classNumber})
     </insert>
     <update id="increaseCourseStudentNumber">
         update SelectCourse.course
@@ -136,6 +141,10 @@
           and c1.course_id = c2.course_id
           and c1.course_teacher_id = t.teacher_id
         limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getCourseId" resultType="java.lang.String">
+        select SelectCourse.course.course_id
+        from SelectCourse.course
     </select>
 
 

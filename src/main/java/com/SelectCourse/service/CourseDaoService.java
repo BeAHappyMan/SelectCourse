@@ -1,10 +1,13 @@
 package com.SelectCourse.service;
 
+import com.SelectCourse.pojo.ClassTime;
 import com.SelectCourse.pojo.Course;
 
 import java.util.List;
 
 public interface CourseDaoService {
+
+    List<String> getCourseId();
 
     List<Course> queryAllCourses(int startIndex,int pageSize);
 
@@ -27,4 +30,6 @@ public interface CourseDaoService {
     List<Course> queryByCourseLocation(String courseLocation);
 
     List<Course> queryAllByCourseTeacherIdCourses(String teacherId, int startIndex, int pageSize);
+
+    int addClassTime(ClassTime classTime);
 }
