@@ -26,6 +26,11 @@ public class CourseDaoServiceImpl implements CourseDaoService {
     }
 
     @Override
+    public List<Course> queryAllCourses2(int startIndex, int pageSize) {
+        return courseDao.queryAllCourses2(startIndex, pageSize);
+    }
+
+    @Override
     public int addCourse(Course course) {
         return courseDao.addCourse(course);
     }

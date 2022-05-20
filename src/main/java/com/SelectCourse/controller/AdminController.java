@@ -37,4 +37,13 @@ public class AdminController {
 
         return Result.success("查询成功", courses);
     }
+
+    @PostMapping("/admin/showAllCourse")
+    public Result showAllCourse(@RequestBody Map<String, Integer> map){
+        int pageNo = map.get("pageNo");
+        int pageSize = map.get("pageSize");
+
+        List<Course> courses = courseDaoService.queryAllCourses2((pageNo-1)*pageSize,pageSize);
+        return Result.success("查询成功", courses);
+    }
 }

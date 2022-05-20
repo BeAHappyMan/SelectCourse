@@ -15,6 +15,8 @@ public interface CourseDao {
 
     List<Course> queryAllCourses(int startIndex,int pageSize);
 
+    List<Course> queryAllCourses2(int startIndex,int pageSize);
+
     List<Course> queryByCourseLocation(String courseLocation);
 
     Course queryCourseByCourseId(String courseId);

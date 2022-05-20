@@ -146,6 +146,26 @@
         select SelectCourse.course.course_id
         from SelectCourse.course
     </select>
+    <select id="queryAllCourses2" resultMap="CourseClassTime">
+        select c1.course_id,
+               c1.course_max_student_number,
+               c1.course_name,
+               c1.course_student_number,
+               c1.course_credit,
+               c1.course_teacher_id,
+               c1.course_pass,
+               t.teacher_name,
+               c2.class_end_time,
+               c2.class_start_time,
+               c2.class_number,
+               c2.class_week,
+               c2.course_location
+        from SelectCourse.course c1,
+             SelectCourse.classtime c2,
+             SelectCourse.teacher t
+        where c1.course_id = c2.course_id
+          and c1.course_teacher_id = t.teacher_id
+    </select>
 
 
     <resultMap id="CourseClassTime" type="course">
@@ -157,6 +177,7 @@
         <result property="teacherName" column="teacher_name"/>
         <result property="coursePass" column="course_pass"/>
         <result property="courseCredit" column="course_credit"/>
+        <result property="coursePass" column="course_pass"/>
         <collection property="classTime" javaType="list" ofType="classTime">
             <result property="courseLocation" column="course_location"/>
             <result property="classWeek" column="class_week"/>

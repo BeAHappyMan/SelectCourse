@@ -11,6 +11,8 @@ public interface CourseDaoService {
 
     List<Course> queryAllCourses(int startIndex,int pageSize);
 
+    List<Course> queryAllCourses2(int startIndex,int pageSize);
+
     int addCourse(Course course);
 
     String getTeacherIdByCourseId(String courseId);
