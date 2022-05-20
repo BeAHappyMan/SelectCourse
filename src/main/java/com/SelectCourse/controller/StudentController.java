@@ -102,6 +102,5 @@ public class StudentController {
             courses.add(courseDaoService.queryCourseByCourseId(courseId));
         }
         return Result.success("成功",courses);
-
     }
 }
