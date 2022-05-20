@@ -58,13 +58,13 @@ public class TeacherController {
             String classWeek = (String) map2.get("classWeek");
             String classStartTime = (String) map2.get("classStartTime");
             String classEndTime = (String) map2.get("classEndTime");
-//            int classNumber = (int) map2.get("classNumber");
+            int classNumber = (int) map2.get("classNumber");
             ClassTime classTime = new ClassTime();
             classTime.setClassEndTime(classEndTime);
             classTime.setClassStartTime(classStartTime);
             classTime.setCourseId(courseId);
             classTime.setClassWeek(classWeek);
-//            classTime.setClassNumber(classNumber);
+            classTime.setClassNumber(classNumber);
             classTime.setCourseLocation(courseLocation);
             courseDaoService.addClassTime(classTime);
         }
