@@ -19,6 +19,7 @@ public class Course {
     private String courseTeacherId;// 课程老师工号
     private String teacherName;
     private Boolean isSelected;
+    private Boolean isConflict;
     private Integer coursePass;
     private Integer courseCredit;
     private List<ClassTime> classTime;

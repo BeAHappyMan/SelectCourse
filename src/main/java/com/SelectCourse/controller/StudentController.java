@@ -1,7 +1,9 @@
 package com.SelectCourse.controller;
 
 
+import com.SelectCourse.common.MyDate;
 import com.SelectCourse.common.Result;
+import com.SelectCourse.pojo.ClassTime;
 import com.SelectCourse.pojo.Course;
 import com.SelectCourse.pojo.SelectRecord;
 import com.SelectCourse.service.CourseDaoService;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,15 +87,52 @@ public class StudentController {
         int pageSize = (int) map.get("pageSize");
         int pageNo = (int) map.get("pageNo");
         List<Course> courses = courseDaoService.queryAllCourses((pageNo-1)*pageSize,pageSize);
-
+        System.out.println(courses);
         SelectRecord selectRecord = new SelectRecord();
         selectRecord.setStudentId(studentId);
+        List<List<String>> t = new ArrayList<>();
         for (Course course : courses) {
             selectRecord.setCourseId(course.getCourseId());
-            if(selectRecordDaoService.querySelectRecord(selectRecord)!=null)
+            if(selectRecordDaoService.querySelectRecord(selectRecord)!=null) {
                 course.setIsSelected(true);
+                List<String> temp = new ArrayList<>();
+                for (ClassTime classTime : course.getClassTime()) {
+//                    temp.add(course.getCourseId());
+                    temp.add(classTime.getClassWeek());
+                    temp.add(classTime.getClassStartTime());
+                    temp.add(classTime.getClassEndTime());
+                }
+//                mm.put(course.getCourseId(),temp);
+                t.add(temp);
+            }
             else
                 course.setIsSelected(false);
+        }
+
+        for (Course course : courses) {
+            if(!course.getIsSelected()){
+                boolean flag = true;
+                for (ClassTime classTime : course.getClassTime()) {
+                    String week = classTime.getClassWeek();
+                    String start = classTime.getClassStartTime();
+                    String end = classTime.getClassEndTime();
+                    for (List<String> strings : t) {
+                        if(strings.get(0).equals(week)){
+                            System.out.println(MyDate.toDate(strings.get(1)).compareTo(MyDate.toDate(end)));
+                            System.out.println(MyDate.toDate(strings.get(2)).compareTo(MyDate.toDate(start)));
+                            if(MyDate.toDate(strings.get(1)).compareTo(MyDate.toDate(end))<=0
+                                    && MyDate.toDate(strings.get(2)).compareTo(MyDate.toDate(start))>=0){
+                                flag = false;
+                                break;
+                            }
+                        }
+                    }
+                    if(!flag) break;
+                }
+                System.out.println(flag);
+                if(!flag) course.setIsConflict(true);
+                else course.setIsConflict(false);
+            }
         }
         return Result.success("成功",courses);
     }
