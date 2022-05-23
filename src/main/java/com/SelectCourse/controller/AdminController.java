@@ -34,6 +34,7 @@ public class AdminController {
             return Result.success("审核成功");
         else
             return Result.success();
+
     }
 
     @PostMapping("/admin/showClassSchedule")
