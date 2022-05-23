@@ -12,10 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-
+/*
+用户
+ */
 @RestController
 public class UserController {
 
@@ -26,6 +27,9 @@ public class UserController {
     @Autowired
     private TeacherDaoService teacherDaoService;
 
+    /*
+    登录
+     */
     @ResponseBody
     @PostMapping("/login")
     public Result userLogin(@RequestBody User user2){
@@ -46,6 +50,9 @@ public class UserController {
           return Result.success("登录成功",user);
     }
 
+    /*
+    注册
+     */
     @ResponseBody
     @PostMapping("/register")
     public Result userRegister(@RequestBody Map<String,String> map){
@@ -69,8 +76,8 @@ public class UserController {
             Student student = new Student();
             student.setStudentName(userName);
             student.setStudentId(userId);
-            String studentClass = map.get("studentClass");
-            student.setStudentClass(studentClass);
+//            String studentClass = map.get("studentClass");
+//            student.setStudentClass(studentClass);
             int res = studentDaoService.addStudent(student);
             if (res > 0)
                 return Result.success("学生注册成功", student);

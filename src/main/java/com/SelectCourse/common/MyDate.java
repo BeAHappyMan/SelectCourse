@@ -4,8 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class MyDate {
-    public static Date toDate(String s){
+    /*
+    将String类型转为Date
+     */
+    public static Date toDate(String s) {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         Date newTime = null;
         try {

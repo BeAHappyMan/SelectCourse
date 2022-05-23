@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+/*
+教师
+ */
 @RestController
 @RequestMapping
 public class TeacherController {
@@ -18,6 +21,9 @@ public class TeacherController {
     @Autowired
     CourseDaoService courseDaoService;
 
+    /*
+    查询教授课程
+     */
     @ResponseBody
     @PostMapping("/teacher/showClassSchedule")
     public Result showClassSchedule(@RequestBody Map<String,String> map) {
@@ -29,6 +35,9 @@ public class TeacherController {
         return Result.success("查询成功",courses);
     }
 
+    /*
+    新添课程
+     */
     @ResponseBody
     @PostMapping("/teacher/addCourse")
     public Result addCourse(@RequestBody Map<String,Object> map) {
@@ -52,6 +61,8 @@ public class TeacherController {
         course.setCourseName(courseName);
         course.setCourseMaxStudentNumber(courseMaxStudentNumber);
         courseDaoService.addCourse(course);
+
+        // 增加选课时间
         List<Map<String,Object>> courseTimes = (List<Map<String, Object>>) map.get("courseTime");
         for (Map<String, Object> map2 : courseTimes) {
             String courseLocation = (String) map2.get("courseLocation");
@@ -68,9 +79,6 @@ public class TeacherController {
             classTime.setCourseLocation(courseLocation);
             courseDaoService.addClassTime(classTime);
         }
-
         return Result.success("成功");
     }
-
-
 }
